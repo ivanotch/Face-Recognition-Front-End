@@ -10,12 +10,6 @@ import FaceRecognition from './components/FaceRecognition/FaceRecognition';
 import './App.css';
 import 'tachyons';
 
-// const PAT = 'd7b2c2046d3746f3acd0a3bd8acb38ad';
-// const USER_ID = 'wcu4h5ombdif';       
-// const APP_ID = 'my-first-application';
-// const MODEL_ID = 'face-detection';
-// const MODEL_VERSION_ID = '6dc7e46bc9124c5c8824be4822abe105'; 
-
 const initialState = {
   'input': '',
   'imageUrl': '',
@@ -72,7 +66,7 @@ class App extends Component {
 
   onButtonSubmit = () => {
     this.setState({imageUrl: this.state.input});
-    fetch('http://localhost:3001/imageurl', {
+    fetch('https://facerecogbackend.onrender.com/imageurl', {
         method: 'post',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -81,7 +75,7 @@ class App extends Component {
     })
     .then(response => response.json())
     .then(result => {
-      fetch('http://localhost:3001/image', {
+      fetch('https://facerecogbackend.onrender.com/image', {
         method: 'put',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
