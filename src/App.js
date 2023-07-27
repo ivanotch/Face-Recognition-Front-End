@@ -91,7 +91,7 @@ class App extends Component {
       .catch(console.log)
       this.displayFaceBox(this.calculateFaceLocation(JSON.parse(result)))}
     )
-    .catch(error => console.log('error', error));
+    .catch(error => res.status(400).json("cannot fetch image"));
   };
   
   onRouteChange = (route) => {
