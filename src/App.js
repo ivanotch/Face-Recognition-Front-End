@@ -73,8 +73,9 @@ class App extends Component {
           input: this.state.input,
         })
     })
-    .then(response => {
-      if (response) {
+    .then(response => response.json())
+    .then(result => {
+      if (result) {
         fetch('https://facerecogbackend.onrender.com/image', {
           method: 'put',
           headers: {'Content-Type': 'application/json'},
@@ -90,8 +91,8 @@ class App extends Component {
         })
         .catch(console.log)
       }
-      console.log(response)
-      this.displayFaceBox(this.calculateFaceLocation(response))
+      console.log(result)
+      this.displayFaceBox(this.calculateFaceLocation(JSON.parse(result)))
     })
     .catch(error => console.log(error));
   };
